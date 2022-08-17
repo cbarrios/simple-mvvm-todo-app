@@ -16,6 +16,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.lalosapps.todoapp.core.util.UiEvent
+import kotlinx.coroutines.flow.collectLatest
 
 
 @ExperimentalComposeUiApi
@@ -28,7 +29,7 @@ fun AddEditTodoScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
 
     LaunchedEffect(key1 = true) {
-        viewModel.uiEvent.collect { event ->
+        viewModel.uiEvent.collectLatest { event ->
             when (event) {
                 is UiEvent.PopBackstack -> onPopBackStack()
                 is UiEvent.ShowSnackbar -> {
