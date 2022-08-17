@@ -3,8 +3,9 @@ package com.lalosapps.todoapp.data.local
 import com.lalosapps.todoapp.data.local.room.dao.TodoDao
 import com.lalosapps.todoapp.data.local.room.model.Todo
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class LocalTodoDataSource(private val dao: TodoDao) {
+class LocalTodoDataSource @Inject constructor(private val dao: TodoDao) {
 
     suspend fun insertTodo(todo: Todo) {
         dao.insertTodo(todo)
